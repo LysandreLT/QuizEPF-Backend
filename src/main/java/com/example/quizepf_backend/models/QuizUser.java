@@ -44,18 +44,24 @@ public class QuizUser {
         private int score;
 
 
-        public QuizUser.Builder id (Long id) {
+        public Builder id (Long id) {
             this.id = id;
             return this;
         }
 
-        public QuizUser.Builder quiz(Quiz quiz) {
+        public Builder quiz(Quiz quiz) {
             this.quiz = quiz;
             return this;
         }
-        public QuizUser.Builder user(User user) {
+        public Builder user(User user) {
             this.user = user;
             return this;
+        }
+
+        public Builder score(int score )
+        {
+            this.score = score;
+            return  this;
         }
         public QuizUser build() {
             return new QuizUser(this);
