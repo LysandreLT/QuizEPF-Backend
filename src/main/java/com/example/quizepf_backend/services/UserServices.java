@@ -75,6 +75,7 @@ public class UserServices {
 
     @Transactional
     public void deleteById(Long id) {
+        /*quizUserDao.deleteByUserId(id);*/
         userDao.deleteById(id);
     }
 
