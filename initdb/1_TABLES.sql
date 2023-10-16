@@ -7,6 +7,13 @@ create table users
     email TEXT not null
 );
 
+create table quizzes
+(
+    id SERIAL PRIMARY KEY,
+    name TEXT not null,
+    create_by int not null
+);
+
 create table quiz_users
 (
     id SERIAL PRIMARY KEY,
@@ -31,10 +38,5 @@ create table quiz_answers
     answer TEXT not null
 );
 
-create table quizzes
-(
-    id SERIAL PRIMARY KEY,
-    name TEXT not null,
-    create_by int not null
-);
+
 

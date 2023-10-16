@@ -27,6 +27,7 @@ public class QuizUserController {
 
     @GetMapping("/quiz_user/{id}")
     public QuizUser getQuizUserByUserIdAndQuizId(@PathVariable Long quizId,@PathVariable Long userId) { return quizUserService.getByUserIdAndQuizId(quizId, userId);}
+
     @DeleteMapping("/{id}")
     public void deleteQuizUser(@PathVariable Long id) {
         quizUserService.deleteById(id);
