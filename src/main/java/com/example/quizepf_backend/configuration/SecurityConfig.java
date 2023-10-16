@@ -31,6 +31,9 @@ public class SecurityConfig {
 
                         // TODO : temp
                         .requestMatchers(HttpMethod.GET).permitAll()
+                        .requestMatchers(HttpMethod.POST).permitAll()
+                        .requestMatchers(HttpMethod.DELETE).permitAll()
+
                         .anyRequest().authenticated())
         ;
         return http.build();

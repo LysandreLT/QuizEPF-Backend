@@ -2,7 +2,6 @@ package com.example.quizepf_backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "quiz_users")
@@ -27,7 +26,7 @@ public class QuizUser {
     //@PrimaryKeyJoinColumn
     //private LeaderBoard leaderboard;
 
-    private QuizUser(QuizUser.Builder builder) {
+    private QuizUser(Builder builder) {
         this.id = builder.id;
         this.quiz = builder.quiz;
         this.user = builder.user;

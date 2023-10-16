@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "quiz_answers")
-@NoArgsConstructor
 @Getter
 public class QuizAnswer {
     @Id
@@ -17,7 +16,50 @@ public class QuizAnswer {
     @JoinColumn(name = "quiz_question_id")
     QuizQuestion quizQuestion;
 
+    @Column(name = "is_true")
+    private boolean isTrue;
+
     private String answer;
 
+    private QuizAnswer(Builder builder)
+    {
+        this.id = builder.id;
+        this.quizQuestion = builder.quizQuestion;
+        this.isTrue = builder.isTrue;
+        this.answer = builder.answer;
+    }
+    public QuizAnswer() {
 
+    }
+
+    public static class Builder {
+        private Long id;
+        QuizQuestion quizQuestion;
+        private boolean isTrue;
+        private String answer;
+
+        public Builder id(Long id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder quizQuestion(QuizQuestion quizQuestion) {
+            this.quizQuestion = quizQuestion;
+            return this;
+        }
+
+        public Builder isTrue(boolean isTrue){
+            this.isTrue = isTrue;
+            return this;
+        }
+
+        public Builder answer(String answer) {
+            this.answer = answer;
+            return  this;
+        }
+
+        public QuizAnswer build(){
+            return new QuizAnswer(this);
+        }
+    }
 }

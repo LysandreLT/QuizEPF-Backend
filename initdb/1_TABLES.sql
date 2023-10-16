@@ -35,7 +35,8 @@ create table quiz_answers
 (
     id SERIAL PRIMARY KEY,
     quiz_question_id int not null,
-    answer TEXT not null
+    answer TEXT not null,
+    is_true bool null
 );
 
 

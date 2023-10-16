@@ -1,5 +1,6 @@
-package com.example.quizepf_backend.DTO;
+package com.example.quizepf_backend.DTO.mapper;
 
+import com.example.quizepf_backend.DTO.QuizUserDto;
 import com.example.quizepf_backend.models.QuizUser;
 import com.example.quizepf_backend.models.User;
 
