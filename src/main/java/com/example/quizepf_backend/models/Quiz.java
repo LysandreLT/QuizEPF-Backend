@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quizzes")
-@NoArgsConstructor
 @Getter
 public class Quiz {
     @Id
