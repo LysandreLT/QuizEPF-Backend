@@ -10,15 +10,25 @@ public class UserMapper {
                 .id(id)
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
-                .password(dto.getPassword())
+                .password(dto.getToken())
+                .email(dto.getLogin())
                 .build();
     }
 
-    public static UserDto toDto (User student){
+    public static UserDto toDto (User user){
         return UserDto.builder()
-                .firstName(student.getFirstName())
-                .lastName(student.getLastName())
-                .password(student.getPassword())
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .token(user.getEmail())
                 .build();
     }
+/*
+    public static User signUpToUser(SignUpDto signUpDto){
+        return new User.Builder()
+                .firstName(signUpDto.firstName())
+                .lastName(signUpDto.lastName())
+                .email(signUpDto.login())
+                .build();
+    }*/
 }

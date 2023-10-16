@@ -1,13 +1,17 @@
 package com.example.quizepf_backend.DTO;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-@Builder // MApStruct
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDto {
+
+    private Long id;
     private String firstName;
     private String lastName;
-    private String password;
+    private String login;
+    private String token;
 
 }
