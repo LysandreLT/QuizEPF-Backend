@@ -1,8 +1,8 @@
 package com.example.quizepf_backend.models;
 
+import com.example.quizepf_backend.models.enums.QuestionType;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "quiz_questions")
@@ -14,7 +14,7 @@ public class QuizQuestion {
 
     private String question;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "quiz_id")
     Quiz quiz;
 
@@ -58,7 +58,7 @@ public class QuizQuestion {
             this.quiz = quiz;
             return this;
         }
-        public QuizQuestion.Builder QuestionType(QuestionType questionType) {
+        public QuizQuestion.Builder questionType(QuestionType questionType) {
             this.questionType = questionType;
             return this;
         }

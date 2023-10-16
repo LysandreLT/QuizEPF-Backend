@@ -1,4 +1,4 @@
-package com.example.quizepf_backend.models;
+package com.example.quizepf_backend.models.enums;
 
 import jakarta.persistence.*;
 import lombok.Getter;

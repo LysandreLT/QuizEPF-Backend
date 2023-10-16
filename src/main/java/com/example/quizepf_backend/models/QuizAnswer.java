@@ -12,7 +12,7 @@ public class QuizAnswer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "quiz_question_id")
     QuizQuestion quizQuestion;
 
