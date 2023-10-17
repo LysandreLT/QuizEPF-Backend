@@ -41,4 +41,9 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("/email/{email}")
+    public UserDto getUserByEmail(@PathVariable String email) {
+        return userService.findByLogin(email);
+    }
+
 }
