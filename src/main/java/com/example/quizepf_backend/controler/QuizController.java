@@ -28,22 +28,22 @@ public class QuizController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteQuiz(@PathVariable Long id) {
         quizService.deleteById(id);
     }
 
     @PostMapping("")
-    public void addUser(@RequestBody QuizDto quizDto) {
-        quizService.addQuiz(quizDto);
+    public Quiz addQuiz(@RequestBody QuizDto quizDto) {
+        return quizService.addQuiz(quizDto);
     }
 
     @PostMapping("/{id}")
-    public void updateUser(@RequestBody QuizDto quizDto, @PathVariable Long id) {
+    public void updateQuiz(@RequestBody QuizDto quizDto, @PathVariable Long id) {
         quizService.updateQuiz(quizDto, id);
     }
 
     @GetMapping("")
-    public List<Quiz> getUsers() {
+    public List<Quiz> getQuizs() {
         return quizService.findAll();
     }
 
@@ -59,8 +59,8 @@ public class QuizController {
     }
 
     @PostMapping("/questions")
-    public void addQuizQuestion(@RequestBody QuizQuestionDto quizQuestionDto) {
-        quizQuestionServices.addQuizQuestion(quizQuestionDto);
+    public QuizQuestion addQuizQuestion(@RequestBody QuizQuestionDto quizQuestionDto) {
+        return quizQuestionServices.addQuizQuestion(quizQuestionDto);
     }
 
     @PostMapping("/questions/{id}")

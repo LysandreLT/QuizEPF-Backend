@@ -34,7 +34,7 @@ public class QuizQuestionServices {
     }
 
     @Transactional
-    public void addQuizQuestion(QuizQuestionDto quizUserDto) {
+    public QuizQuestion addQuizQuestion(QuizQuestionDto quizUserDto) {
         QuizQuestion quizQuestion;
         try {
             quizQuestion = QuizQuestionMapper.fromDto(quizUserDto, null);
@@ -42,7 +42,7 @@ public class QuizQuestionServices {
             throw new RuntimeException("Error with quiz answer image", e);
         }
 
-        quizQuestionDao.save(quizQuestion);
+        return quizQuestionDao.save(quizQuestion);
     }
 
     @Transactional
