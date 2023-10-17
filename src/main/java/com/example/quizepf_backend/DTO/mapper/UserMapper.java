@@ -11,8 +11,8 @@ public class UserMapper {
                 .id(id)
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
-                .password(dto.getToken())
-                .email(dto.getLogin())
+                .password(dto.getPassword())
+                .email(dto.getEmail())
                 .build();
     }
 
@@ -21,8 +21,8 @@ public class UserMapper {
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .login(user.getEmail())
-                .token(user.getPassword())
+                .email(user.getEmail())
+                .password(user.getPassword())
                 .build();
     }
 /*

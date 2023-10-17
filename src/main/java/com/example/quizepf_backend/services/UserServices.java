@@ -43,8 +43,8 @@ public class UserServices {
 
     public UserDto register(SignUpDto userDto) {
 
-        System.out.println("first name: "+userDto.firstName() + ", last name: "+userDto.lastName() + ", email: "+userDto.login() + ", password: "+userDto.password());
-        Optional<User> optionalUser = userDao.findByEmail(userDto.login());
+        System.out.println("first name: "+userDto.firstName() + ", last name: "+userDto.lastName() + ", email: "+userDto.email() + ", password: "+userDto.password());
+        Optional<User> optionalUser = userDao.findByEmail(userDto.email());
 
         if (optionalUser.isPresent()) {
             throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
@@ -53,7 +53,7 @@ public class UserServices {
         User user = new User.Builder()
                 .firstName(userDto.firstName())
                 .lastName(userDto.lastName())
-                .email(userDto.login())
+                .email(userDto.email())
                 .password(passwordEncoder.encode(CharBuffer.wrap(userDto.password())))
                 .build();
 

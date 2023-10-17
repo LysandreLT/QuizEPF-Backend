@@ -25,7 +25,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody @Valid CredentialsDto credentialsDto) {
         UserDto userDto = userService.login(credentialsDto);
-        userDto.setToken(userAuthenticationProvider.createToken(userDto));
+        userDto.setPassword(userAuthenticationProvider.createToken(userDto));
         return ResponseEntity.ok(userDto);
     }
 
@@ -33,7 +33,7 @@ public class AuthController {
     public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
 
         UserDto createdUser = userService.register(user);
-        createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
+        createdUser.setPassword(userAuthenticationProvider.createToken(createdUser));
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
 
