@@ -26,10 +26,10 @@ public class UserController {
         userService.deleteById(id);
     }
 
-    @PostMapping("")
+/*    @PostMapping("")
     public void addUser(@RequestBody UserDto userDto) {
         userService.addUser(userDto);
-    }
+    }*/
 
     @PostMapping("/{id}")
     public void updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {

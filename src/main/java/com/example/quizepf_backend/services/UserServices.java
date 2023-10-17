@@ -59,7 +59,6 @@ public class UserServices {
 
         /*System.out.println("first name: "+user.getFirstName() + ", last name: "+user.getLastName() + ", email: "+user.getEmail() + ", password: "+user.getPassword());*/
         User savedUser = userDao.save(user);
-
         return UserMapper.toDto(savedUser);
     }
 
@@ -79,7 +78,7 @@ public class UserServices {
         userDao.deleteById(id);
     }
 
-    @Transactional
+/*    @Transactional
     public void addUser(UserDto studentDto) {
         User user;
         try {
@@ -89,7 +88,7 @@ public class UserServices {
         }
 
         userDao.save(user);
-    }
+    }*/
 
     @Transactional
     public void updateUser(UserDto userDto, Long id) {

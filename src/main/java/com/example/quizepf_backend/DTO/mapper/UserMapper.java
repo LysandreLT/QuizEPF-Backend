@@ -21,7 +21,8 @@ public class UserMapper {
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .token(user.getEmail())
+                .login(user.getEmail())
+                .token(user.getPassword())
                 .build();
     }
 /*
