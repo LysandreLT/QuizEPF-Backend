@@ -45,5 +45,4 @@ public class AuthController {
     public ResponseEntity<Long> getUserId(){
         return ResponseEntity.ok(userService.getUserId());
     }
-
 }

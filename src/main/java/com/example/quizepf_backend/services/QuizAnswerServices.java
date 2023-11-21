@@ -3,8 +3,10 @@ package com.example.quizepf_backend.services;
 import com.example.quizepf_backend.DAO.QuizAnswerDAO;
 import com.example.quizepf_backend.DTO.QuizAnswerDto;
 import com.example.quizepf_backend.DTO.mapper.QuizAnswerMapper;
+import com.example.quizepf_backend.exceptions.AppException;
 import com.example.quizepf_backend.models.QuizAnswer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +25,7 @@ public class QuizAnswerServices {
         return quizzes ;
     }
     public QuizAnswer getById(Long id) {
-        return quizAnswerDao.findById(id).orElseThrow();
+        return quizAnswerDao.findById(id).orElseThrow(() -> new AppException("Unknown quiz answer", HttpStatus.NOT_FOUND));
     }
 
     @Transactional
@@ -37,7 +39,7 @@ public class QuizAnswerServices {
         try {
             quizAnswer = QuizAnswerMapper.fromDto(quizUserDto, null);
         } catch (IOException e) {
-            throw new RuntimeException("Error with quiz answer image", e);
+            throw new AppException("Error with quiz answer image", HttpStatus.BAD_REQUEST);
         }
 
         quizAnswerDao.save(quizAnswer);
@@ -46,12 +48,12 @@ public class QuizAnswerServices {
     @Transactional
     public void updateQuizAnswer(QuizAnswerDto quizUserDto, Long id) {
         quizAnswerDao.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("quiz answer doesn't exist"));
+                .orElseThrow(() -> new AppException("Unknown quiz answer", HttpStatus.NOT_FOUND));
         QuizAnswer quizAnswer;
         try {
             quizAnswer = QuizAnswerMapper.fromDto(quizUserDto, id);
         } catch (IOException e) {
-            throw new RuntimeException("Error with quiz answer image", e);
+            throw new AppException("Error with quiz answer image", HttpStatus.BAD_REQUEST);
         }
         quizAnswerDao.save(quizAnswer);
     }
