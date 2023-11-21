@@ -18,7 +18,7 @@ public class Quiz {
     private String name;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "create_by")
+    @JoinColumn(name = "created_by")
     private User user;
 
     // for join many-to-many relationship with user

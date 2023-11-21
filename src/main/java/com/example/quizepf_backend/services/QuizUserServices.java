@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -24,25 +25,28 @@ public class QuizUserServices {
         it.forEach(quizUsers::add);
         return quizUsers ;
     }
-    public QuizUser getById(Long id) {
-        return quizUserDao.findById(id).orElseThrow();
-    }
 
-    public List<QuizUser> getByUserId(Long id) {
-        Iterable<QuizUser> it = quizUserDao.findByUserId(id);
-        List <QuizUser> quizUsers = new ArrayList<>();
-        it.forEach(quizUsers::add);
-        return quizUsers ;
-        //return quizUserDao.findByUserId(id).orElseThrow(() -> new AppException("Unknown quizUser", HttpStatus.NOT_FOUND));
-    }
-    public List<QuizUser> getByQuizId(Long id) {
-        Iterable<QuizUser> it = quizUserDao.findByQuizId(id);
-        List <QuizUser> quizUsers = new ArrayList<>();
-        it.forEach(quizUsers::add);
-        return quizUsers ;
-    }
-    public QuizUser getByUserIdAndQuizId(Long quizId, Long userId) {
-        return quizUserDao.findByQuizIdAndUserId(quizId, userId); //.orElseThrow(() -> new AppException("Unknown quiz for this user", HttpStatus.NOT_FOUND))
+    public List<Ranking> getRanking(Long userId){
+        Iterable<QuizUser> it = quizUserDao.findByUserId(userId);
+        List <Ranking> rankings = new ArrayList<>();
+        it.forEach( (quizUser) -> {
+            List<QuizUser> quizUsers = quizUserDao.findByQuizId(quizUser.getQuiz().getId());
+            quizUsers.sort((qu1, qu2) -> qu2.getScore() - qu1.getScore());
+
+            Ranking ranking = Ranking.builder()
+                    .quiz_name(quizUser.getQuiz().getName())
+                    .score(quizUser.getScore())
+                    .ranking(quizUsers.indexOf(quizUser) + 1)
+                    .build();
+                    // get all user for a quiz (quizUsersByQuizId )
+                    // sort by score
+                    // get index
+                    // map into ranking Dto
+
+            rankings.add(ranking);
+
+        });
+        return rankings;
     }
 
     @Transactional

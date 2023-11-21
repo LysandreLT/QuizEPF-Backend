@@ -1,6 +1,7 @@
 package com.example.quizepf_backend.controler;
 
 import com.example.quizepf_backend.DTO.QuizUserDto;
+import com.example.quizepf_backend.DTO.Ranking;
 import com.example.quizepf_backend.models.QuizUser;
 import com.example.quizepf_backend.services.QuizUserServices;
 import lombok.RequiredArgsConstructor;
@@ -15,19 +16,6 @@ import java.util.List;
 public class QuizUserController {
 
     private final QuizUserServices quizUserService;
-
-    @GetMapping("/{id}")
-    public QuizUser getQuizUserById(@PathVariable Long id) {
-        return quizUserService.getById(id);
-    }
-    @GetMapping("/user/{id}")
-    public List<QuizUser> getQuizUserByUserId(@PathVariable Long userId) { return quizUserService.getByUserId(userId);}
-    @GetMapping("/quiz/{id}")
-    public List<QuizUser> getQuizUserByQuizId(@PathVariable Long quizId) { return quizUserService.getByQuizId(quizId);}
-
-    @GetMapping("/quiz_user/{id}")
-    public QuizUser getQuizUserByUserIdAndQuizId(@PathVariable Long quizId,@PathVariable Long userId) { return quizUserService.getByUserIdAndQuizId(quizId, userId);}
-
     @DeleteMapping("/{id}")
     public void deleteQuizUser(@PathVariable Long id) {
         quizUserService.deleteById(id);
@@ -46,5 +34,10 @@ public class QuizUserController {
     @GetMapping("")
     public List<QuizUser> getQuizUsers() {
         return quizUserService.findAll();
+    }
+
+    @GetMapping("/{user_id}")
+    public List<Ranking> getRanking(@PathVariable Long user_id) {
+        return quizUserService.getRanking(user_id);
     }
 }

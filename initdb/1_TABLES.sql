@@ -11,7 +11,7 @@ create table quizzes
 (
     id SERIAL PRIMARY KEY,
     name TEXT not null,
-    create_by int not null
+    created_by int not null
 );
 
 create table quiz_users
