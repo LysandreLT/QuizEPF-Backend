@@ -37,6 +37,11 @@ public class QuizAnswerServices {
     }
 
     @Transactional
+    public void deleteQuizAnswerByQuestionId(Long id) {
+        quizAnswerDao.deleteById(id);
+    }
+
+    @Transactional
     public void addQuizAnswer(QuizAnswerDto quizUserDto) {
         QuizAnswer quizAnswer;
         try {

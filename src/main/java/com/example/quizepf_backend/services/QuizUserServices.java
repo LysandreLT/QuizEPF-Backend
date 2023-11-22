@@ -7,10 +7,8 @@ import com.example.quizepf_backend.models.QuizUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -24,6 +22,13 @@ public class QuizUserServices {
         List <QuizUser> quizUsers = new ArrayList<>();
         it.forEach(quizUsers::add);
         return quizUsers ;
+    }
+
+    public List<QuizUser> getQuizUsersByUserId(Long userId){
+        Iterable<QuizUser> it = quizUserDao.findByUserId(userId);
+        List<QuizUser> quizUsers = new ArrayList<>();
+        it.forEach(quizUsers::add);
+        return quizUsers;
     }
 
     public List<Ranking> getRanking(Long userId){
@@ -50,8 +55,15 @@ public class QuizUserServices {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public void deleteQuizUserById(Long id) {
+
         quizUserDao.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteQuizUserByQuizId(Long quizId) {
+
+        quizUserDao.deleteByQuizId(quizId);
     }
 
     @Transactional

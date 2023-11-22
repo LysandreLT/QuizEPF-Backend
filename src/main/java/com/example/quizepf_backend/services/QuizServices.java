@@ -18,6 +18,10 @@ import java.util.NoSuchElementException;
 public class QuizServices {
 
     private final QuizDAO quizDao;
+    private final QuizUserServices quizUserServices;
+    private final QuizQuestionServices quizQuestionServices;
+
+
     public List<Quiz> findAll() {
         Iterable<Quiz> it = quizDao.findAll();
         List <Quiz> quizzes = new ArrayList<>();
@@ -28,8 +32,18 @@ public class QuizServices {
         return quizDao.findById(id).orElseThrow();
     }
 
+    public List<Quiz> getQuizByUserId(Long userId){
+        Iterable<Quiz> it = quizDao.findByUserId(userId);
+        List<Quiz> quizzes = new ArrayList<>();
+        it.forEach(quizzes::add);
+        return quizzes;
+    }
+
     @Transactional
-    public void deleteById(Long id) {
+    public void deleteQuizById(Long id) {
+
+        quizQuestionServices.deleteQuestionsByQuizId(id);
+        quizUserServices.deleteQuizUserByQuizId(id);
         quizDao.deleteById(id);
     }
 

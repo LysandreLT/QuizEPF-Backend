@@ -16,9 +16,13 @@ import java.util.List;
 public class QuizUserController {
 
     private final QuizUserServices quizUserService;
+
+    @GetMapping("/user/{userId}")
+    public List<QuizUser> getQuizUserByUserId(@PathVariable Long userId) { return quizUserService.getQuizUsersByUserId(userId);}
+
     @DeleteMapping("/{id}")
     public void deleteQuizUser(@PathVariable Long id) {
-        quizUserService.deleteById(id);
+        quizUserService.deleteQuizUserById(id);
     }
 
     @PostMapping("")
