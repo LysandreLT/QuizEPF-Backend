@@ -74,11 +74,9 @@ public class QuizController {
     }
 
     // Quizzes Answers
-
-
-    @GetMapping("/answers/{id}")
-    public QuizAnswer getQuizAnswerById(@PathVariable Long id) {
-        return quizAnswerServices.getById(id);
+    @GetMapping("/answers/quiz/{quiz_id}")
+    public List<QuizAnswer> getQuizAnswersById(@PathVariable Long quiz_id) {
+        return quizAnswerServices.getQuizAnswersByQuizId(quiz_id);
     }
 
     @DeleteMapping("/answers/{id}")

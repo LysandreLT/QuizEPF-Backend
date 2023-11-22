@@ -24,8 +24,11 @@ public class QuizAnswerServices {
         it.forEach(quizzes::add);
         return quizzes ;
     }
-    public QuizAnswer getById(Long id) {
-        return quizAnswerDao.findById(id).orElseThrow(() -> new AppException("Unknown quiz answer", HttpStatus.NOT_FOUND));
+    public List<QuizAnswer> getQuizAnswersByQuizId(Long quizId) {
+        Iterable<QuizAnswer> it = quizAnswerDao.findQuizAnswersByQuizId(quizId);
+        List<QuizAnswer> quizAnswers = new ArrayList<>();
+        it.forEach(quizAnswers::add);
+        return quizAnswers;
     }
 
     @Transactional

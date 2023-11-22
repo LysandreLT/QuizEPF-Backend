@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
+
 public enum QuestionType {
-    SINGLECHOICE,
-    QCM,
-    WRITENANSWER
+    SINGLECHOICE ,
+    QCM ,
+    WRITENANSWER ;
 
 }
+
