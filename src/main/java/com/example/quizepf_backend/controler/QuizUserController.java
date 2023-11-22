@@ -22,7 +22,7 @@ public class QuizUserController {
 
     @DeleteMapping("/{id}")
     public void deleteQuizUser(@PathVariable Long id) {
-        quizUserService.deleteById(id);
+        quizUserService.deleteQuizUserById(id);
     }
 
     @PostMapping("")

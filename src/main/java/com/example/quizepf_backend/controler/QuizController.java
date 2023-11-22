@@ -34,7 +34,7 @@ public class QuizController {
 
     @DeleteMapping("/{id}")
     public void deleteQuiz(@PathVariable Long id) {
-        quizService.deleteById(id);
+        quizService.deleteQuizById(id);
     }
 
     @PostMapping("")

@@ -18,6 +18,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class QuizQuestionServices {
     private final QuizQuestionDAO quizQuestionDao;
+    private final QuizAnswerServices quizAnswerServices;
     public List<QuizQuestion> findAll() {
         Iterable<QuizQuestion> it = quizQuestionDao.findAll();
         List <QuizQuestion> quizzes = new ArrayList<>();
@@ -31,6 +32,15 @@ public class QuizQuestionServices {
     @Transactional
     public void deleteById(Long id) {
         quizQuestionDao.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteQuestionsByQuizId(Long quizId) {
+
+        List<Long> deletedQuestionsId = quizQuestionDao.findByQuizId(quizId);
+        for (Long deletedQuestionId : deletedQuestionsId) {
+            quizAnswerServices.deleteQuizAnswerByQuestionId(deletedQuestionId);
+        }
     }
 
     @Transactional

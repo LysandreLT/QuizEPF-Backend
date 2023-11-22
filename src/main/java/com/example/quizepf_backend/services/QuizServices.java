@@ -4,7 +4,6 @@ import com.example.quizepf_backend.DAO.QuizDAO;
 import com.example.quizepf_backend.DTO.QuizDto;
 import com.example.quizepf_backend.DTO.mapper.QuizMapper;
 import com.example.quizepf_backend.models.Quiz;
-import com.example.quizepf_backend.models.QuizUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +18,10 @@ import java.util.NoSuchElementException;
 public class QuizServices {
 
     private final QuizDAO quizDao;
+    private final QuizUserServices quizUserServices;
+    private final QuizQuestionServices quizQuestionServices;
+
+
     public List<Quiz> findAll() {
         Iterable<Quiz> it = quizDao.findAll();
         List <Quiz> quizzes = new ArrayList<>();
@@ -37,7 +40,10 @@ public class QuizServices {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public void deleteQuizById(Long id) {
+
+        quizQuestionServices.deleteQuestionsByQuizId(id);
+        quizUserServices.deleteQuizUserByQuizId(id);
         quizDao.deleteById(id);
     }
 

@@ -3,16 +3,12 @@ package com.example.quizepf_backend.services;
 import com.example.quizepf_backend.DAO.QuizUserDAO;
 import com.example.quizepf_backend.DTO.*;
 import com.example.quizepf_backend.DTO.mapper.QuizUserMapper;
-import com.example.quizepf_backend.exceptions.AppException;
 import com.example.quizepf_backend.models.QuizUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -59,8 +55,15 @@ public class QuizUserServices {
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public void deleteQuizUserById(Long id) {
+
         quizUserDao.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteQuizUserByQuizId(Long quizId) {
+
+        quizUserDao.deleteByQuizId(quizId);
     }
 
     @Transactional
