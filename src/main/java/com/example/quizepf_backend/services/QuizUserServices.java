@@ -3,8 +3,10 @@ package com.example.quizepf_backend.services;
 import com.example.quizepf_backend.DAO.QuizUserDAO;
 import com.example.quizepf_backend.DTO.*;
 import com.example.quizepf_backend.DTO.mapper.QuizUserMapper;
+import com.example.quizepf_backend.exceptions.AppException;
 import com.example.quizepf_backend.models.QuizUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,13 @@ public class QuizUserServices {
         List <QuizUser> quizUsers = new ArrayList<>();
         it.forEach(quizUsers::add);
         return quizUsers ;
+    }
+
+    public List<QuizUser> getQuizUsersByUserId(Long userId){
+        Iterable<QuizUser> it = quizUserDao.findByUserId(userId);
+        List<QuizUser> quizUsers = new ArrayList<>();
+        it.forEach(quizUsers::add);
+        return quizUsers;
     }
 
     public List<Ranking> getRanking(Long userId){

@@ -4,6 +4,7 @@ import com.example.quizepf_backend.DAO.QuizDAO;
 import com.example.quizepf_backend.DTO.QuizDto;
 import com.example.quizepf_backend.DTO.mapper.QuizMapper;
 import com.example.quizepf_backend.models.Quiz;
+import com.example.quizepf_backend.models.QuizUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,13 @@ public class QuizServices {
     }
     public Quiz getById(Long id) {
         return quizDao.findById(id).orElseThrow();
+    }
+
+    public List<Quiz> getQuizByUserId(Long userId){
+        Iterable<Quiz> it = quizDao.findByUserId(userId);
+        List<Quiz> quizzes = new ArrayList<>();
+        it.forEach(quizzes::add);
+        return quizzes;
     }
 
     @Transactional

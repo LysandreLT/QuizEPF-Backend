@@ -27,6 +27,11 @@ public class QuizController {
         return quizService.getById(id);
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Quiz> getQuizByUserId(@PathVariable Long userId) {
+        return quizService.getQuizByUserId(userId);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteQuiz(@PathVariable Long id) {
         quizService.deleteById(id);
