@@ -37,10 +37,11 @@ public class QuizAnswerServices {
         List<QuizAnswer> quizAnswers = new ArrayList<>();
         it.forEach((quizAnswer -> {
             //to hide the answer in the browser
-            quizAnswer.setTrue(false);
+            quizAnswer.setIsTrue(false);
             if (quizAnswer.getQuizQuestion().getQuestionType() == QuestionType.WRITENANSWER){
                 quizAnswer.setAnswer("");
             }
+            // comment everything between the 2 comments to test if score is working properly
             quizAnswers.add(quizAnswer);
         }));
         return quizAnswers;

@@ -19,7 +19,7 @@ public class QuizAnswer {
     QuizQuestion quizQuestion;
 
     @Column(name = "is_true")
-    private boolean isTrue;
+    private Boolean isTrue;
 
     private String answer;
 
@@ -32,6 +32,10 @@ public class QuizAnswer {
     }
     public QuizAnswer() {
 
+    }
+
+    public boolean isTrue() {
+        return isTrue;
     }
 
     public static class Builder {
