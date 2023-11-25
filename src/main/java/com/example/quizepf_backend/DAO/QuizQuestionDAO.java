@@ -1,5 +1,6 @@
 package com.example.quizepf_backend.DAO;
 
+import com.example.quizepf_backend.models.QuizAnswer;
 import com.example.quizepf_backend.models.QuizQuestion;
 import com.example.quizepf_backend.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,8 +16,12 @@ import java.util.Optional;
 public interface QuizQuestionDAO extends JpaRepository<QuizQuestion, Long> {
 
     @Query("SELECT qu.id from QuizQuestion qu where qu.quiz.id= :quizId")
-    List<Long> findByQuizId(Long quizId);
+    List<Long> findQuizQuestionIdsByQuizId(Long quizId);
     @Modifying
     @Query("DELETE FROM QuizQuestion qu WHERE qu.quiz.id = :quizId")
     void deleteByQuizId(@Param("quizId") Long quizId);
+
+    @Query("SELECT qq FROM QuizQuestion qq WHERE qq.quiz.id=:quizId")
+    List<QuizQuestion> findQuizQuestionsByQuizId(Long quizId);
+
 }

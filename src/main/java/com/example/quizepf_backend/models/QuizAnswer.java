@@ -3,10 +3,12 @@ package com.example.quizepf_backend.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "quiz_answers")
 @Getter
+@Setter
 public class QuizAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

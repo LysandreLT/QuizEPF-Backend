@@ -37,7 +37,7 @@ public class QuizQuestionServices {
     @Transactional
     public void deleteQuestionsByQuizId(Long quizId) {
 
-        List<Long> deletedQuestionsId = quizQuestionDao.findByQuizId(quizId);
+        List<Long> deletedQuestionsId = quizQuestionDao.findQuizQuestionIdsByQuizId(quizId);
         for (Long deletedQuestionId : deletedQuestionsId) {
             quizAnswerServices.deleteQuizAnswerByQuestionId(deletedQuestionId);
         }

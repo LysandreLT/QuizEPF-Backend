@@ -84,6 +84,11 @@ public class QuizController {
         return quizAnswerServices.getQuizAnswersByQuizId(quiz_id);
     }
 
+    @PostMapping("score/{quizId}/{userId}")
+    public int postAnswers(@RequestBody List<QuizAnswer> userQuizAnswers, @PathVariable Long quizId, @PathVariable Long userId){
+        return quizAnswerServices.checkAnswers(userQuizAnswers,quizId,userId);
+    }
+
     @DeleteMapping("/answers/{id}")
     public void deleteQuizAnswer(@PathVariable Long id) {
         quizAnswerServices.deleteById(id);

@@ -20,5 +20,6 @@ public interface QuizAnswerDAO extends JpaRepository<QuizAnswer, Long> {
     @Query("SELECT qa FROM QuizAnswer qa JOIN qa.quizQuestion qq WHERE qq.quiz.id=:quizId")
     List<QuizAnswer> findQuizAnswersByQuizId(Long quizId);
 
-
+    @Query("SELECT qa FROM QuizAnswer qa WHERE qa.quizQuestion.id=:quizQuestionId")
+    List<QuizAnswer> findQuizAnswersByQuizQuestionId(Long quizQuestionId);
 }
