@@ -31,6 +31,13 @@ public class QuizUserServices {
         return quizUsers;
     }
 
+    public List<QuizUser> getQuizUsersByQuizId(Long userId){
+        Iterable<QuizUser> it = quizUserDao.findByQuizId(userId);
+        List<QuizUser> quizUsers = new ArrayList<>();
+        it.forEach(quizUsers::add);
+        return quizUsers;
+    }
+
     public List<Ranking> getRanking(Long userId){
         Iterable<QuizUser> it = quizUserDao.findByUserId(userId);
         List <Ranking> rankings = new ArrayList<>();

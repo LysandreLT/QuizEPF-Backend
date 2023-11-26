@@ -62,6 +62,11 @@ public class QuizQuestion {
             this.questionType = questionType;
             return this;
         }
+
+        public QuizQuestion.Builder questionValue(int questionValue){
+            this.questionValue = questionValue;
+            return  this;
+        }
         public QuizQuestion build() {
             return new QuizQuestion(this);
         }

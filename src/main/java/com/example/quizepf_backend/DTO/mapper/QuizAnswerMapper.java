@@ -12,7 +12,7 @@ public class QuizAnswerMapper {
         return new QuizAnswer.Builder()
                 .id(id)
                 .quizQuestion(dto.getQuizQuestion())
-                .isTrue(dto.isTrue())
+                .isTrue(dto.getIsTrue())
                 .answer(dto.getAnswer())
                 .build();
     }

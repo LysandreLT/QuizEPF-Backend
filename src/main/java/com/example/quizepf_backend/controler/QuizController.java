@@ -95,8 +95,8 @@ public class QuizController {
     }
 
     @PostMapping("/answers")
-    public void addQuizAnswer(@RequestBody QuizAnswerDto quizAnswerDto) {
-        quizAnswerServices.addQuizAnswer(quizAnswerDto);
+    public QuizAnswer addQuizAnswer(@RequestBody QuizAnswerDto quizAnswerDto) {
+        return quizAnswerServices.addQuizAnswer(quizAnswerDto);
     }
 
     @PostMapping("/answers/{id}")

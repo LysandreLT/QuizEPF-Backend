@@ -14,6 +14,7 @@ public class QuizQuestionMapper {
                 .quiz(dto.getQuiz())
                 .questionType(dto.getQuestionType())
                 .question(dto.getQuestion())
+                .questionValue(dto.getQuestionValue())
                 .build();
     }
 

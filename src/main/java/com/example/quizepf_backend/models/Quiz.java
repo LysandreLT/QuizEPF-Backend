@@ -21,10 +21,6 @@ public class Quiz {
     @JoinColumn(name = "created_by")
     private User user;
 
-    // for join many-to-many relationship with user
-    //@OneToMany
-    //Set<QuizUser> quizUser;
-
     private Quiz(Builder builder)
     {
         this.id = builder.id;

@@ -4,10 +4,7 @@ import com.example.quizepf_backend.DAO.QuizAnswerDAO;
 import com.example.quizepf_backend.DAO.QuizQuestionDAO;
 import com.example.quizepf_backend.DAO.QuizUserDAO;
 import com.example.quizepf_backend.DTO.QuizAnswerDto;
-import com.example.quizepf_backend.DTO.QuizUserDto;
 import com.example.quizepf_backend.DTO.mapper.QuizAnswerMapper;
-import com.example.quizepf_backend.DTO.mapper.QuizMapper;
-import com.example.quizepf_backend.DTO.mapper.QuizUserMapper;
 import com.example.quizepf_backend.exceptions.AppException;
 import com.example.quizepf_backend.models.*;
 import com.example.quizepf_backend.models.enums.QuestionType;
@@ -19,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -141,7 +137,7 @@ public class QuizAnswerServices {
     }
 
     @Transactional
-    public void addQuizAnswer(QuizAnswerDto quizUserDto) {
+    public QuizAnswer addQuizAnswer(QuizAnswerDto quizUserDto) {
         QuizAnswer quizAnswer;
         try {
             quizAnswer = QuizAnswerMapper.fromDto(quizUserDto, null);
@@ -149,7 +145,7 @@ public class QuizAnswerServices {
             throw new AppException("Error with quiz answer image", HttpStatus.BAD_REQUEST);
         }
 
-        quizAnswerDao.save(quizAnswer);
+        return quizAnswerDao.save(quizAnswer);
     }
 
     @Transactional
@@ -164,4 +160,6 @@ public class QuizAnswerServices {
         }
         quizAnswerDao.save(quizAnswer);
     }
+
+
 }
