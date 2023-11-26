@@ -17,6 +17,8 @@ public interface QuizUserDAO extends JpaRepository<QuizUser, Long> {
 
     List<QuizUser> findByQuizId(Long userId);
 
+    Optional<QuizUser> findQuizUserByQuizIdAndAndUserId(Long quizId,Long userId);
+
     @Modifying
     @Query("DELETE FROM QuizUser qu WHERE qu.quiz.id = :quizId")
     void deleteByQuizId(@Param("quizId") Long quizId);

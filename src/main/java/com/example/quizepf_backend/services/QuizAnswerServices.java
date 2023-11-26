@@ -4,7 +4,10 @@ import com.example.quizepf_backend.DAO.QuizAnswerDAO;
 import com.example.quizepf_backend.DAO.QuizQuestionDAO;
 import com.example.quizepf_backend.DAO.QuizUserDAO;
 import com.example.quizepf_backend.DTO.QuizAnswerDto;
+import com.example.quizepf_backend.DTO.QuizUserDto;
 import com.example.quizepf_backend.DTO.mapper.QuizAnswerMapper;
+import com.example.quizepf_backend.DTO.mapper.QuizMapper;
+import com.example.quizepf_backend.DTO.mapper.QuizUserMapper;
 import com.example.quizepf_backend.exceptions.AppException;
 import com.example.quizepf_backend.models.*;
 import com.example.quizepf_backend.models.enums.QuestionType;
@@ -16,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,10 +39,10 @@ public class QuizAnswerServices {
         List<QuizAnswer> quizAnswers = new ArrayList<>();
         it.forEach((quizAnswer -> {
             //to hide the answer in the browser
-            quizAnswer.setIsTrue(false);
+            /*quizAnswer.setIsTrue(false);
             if (quizAnswer.getQuizQuestion().getQuestionType() == QuestionType.WRITTENANSWER){
                 quizAnswer.setAnswer("");
-            }
+            }*/
             // comment everything between the 2 comments to test if score is working properly
             quizAnswers.add(quizAnswer);
         }));
@@ -72,11 +76,13 @@ public class QuizAnswerServices {
         }
 
         //save score (new quizUser)
-        quizUserDao.save(new QuizUser.Builder()
+        QuizUser quizUser = new QuizUser.Builder()
                         .quiz(new Quiz.Builder().id(quizId).build())
                         .user(new User.Builder().id(userId).build())
                         .score(score)
-                .build());
+                .build();
+
+        quizUserDao.save(quizUser);
 
         return score;
     }
@@ -91,7 +97,7 @@ public class QuizAnswerServices {
                 break;
 
             // get the right answer
-            QuizAnswer currAnswer = (QuizAnswer) quizAnswers.stream().filter(qa -> qa.getId() == userQuizAnswer.getId());
+            QuizAnswer currAnswer = quizAnswers.stream().filter(qa -> qa.getId() == userQuizAnswer.getId()).toList().get(0);
 
             //compare result and add to score if correct
             if (quizQuestion.getQuestionType() == QuestionType.WRITTENANSWER){
