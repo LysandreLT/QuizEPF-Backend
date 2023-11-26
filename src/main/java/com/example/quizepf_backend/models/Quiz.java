@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quizzes")
-@NoArgsConstructor
 @Getter
 public class Quiz {
     @Id
@@ -19,10 +18,41 @@ public class Quiz {
     private String name;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "create_by")
+    @JoinColumn(name = "created_by")
     private User user;
 
-    // for join many-to-many relationship with user
-    //@OneToMany
-    //Set<QuizUser> quizUser;
+    private Quiz(Builder builder)
+    {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.user = builder.user;
+    }
+
+    public Quiz(){
+
+    }
+
+    public static class Builder {
+        private Long id;
+        private String name;
+        private User user;
+
+
+        public Builder id (Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+        public Builder user(User user) {
+            this.user = user;
+            return this;
+        }
+        public Quiz build() {
+            return new Quiz(this);
+        }
+    }
 }

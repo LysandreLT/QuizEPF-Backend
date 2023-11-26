@@ -3,7 +3,15 @@ create table users
     id SERIAL PRIMARY KEY,
     first_name TEXT not null,
     last_name TEXT not null,
-    password TEXT not null
+    password TEXT not null,
+    email TEXT not null
+);
+
+create table quizzes
+(
+    id SERIAL PRIMARY KEY,
+    name TEXT not null,
+    created_by int not null
 );
 
 create table quiz_users
@@ -27,13 +35,9 @@ create table quiz_answers
 (
     id SERIAL PRIMARY KEY,
     quiz_question_id int not null,
-    answer TEXT not null
+    answer TEXT not null,
+    is_true bool null
 );
 
-create table quizzes
-(
-    id SERIAL PRIMARY KEY,
-    name TEXT not null,
-    create_by int not null
-);
+
 

@@ -18,7 +18,7 @@ public class User {
     @Column(name = "last_name", length=50, nullable=false, unique=false)
     private String lastName;
     private String password;
-    //private String email;
+    private String email;
     //@Column(name = "mobile_phone")
     //private int mobilePhone;
 
@@ -32,6 +32,7 @@ public class User {
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.password = builder.password;
+        this.email = builder.email;
 
     }
     public User() {
@@ -42,6 +43,7 @@ public class User {
         private String firstName;
         private String lastName;
         private String password;
+        private String email;
 
 
         public Builder id (Long id) {
@@ -59,6 +61,11 @@ public class User {
         }
         public Builder password(String password) {
             this.password = password;
+            return this;
+        }
+
+        public Builder email(String email){
+            this.email = email;
             return this;
         }
 

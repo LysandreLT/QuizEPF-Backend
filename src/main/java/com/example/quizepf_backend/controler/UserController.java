@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserServices userService;
 
     @GetMapping("/{id}")
@@ -25,10 +26,10 @@ public class UserController {
         userService.deleteById(id);
     }
 
-    @PostMapping("")
+/*    @PostMapping("")
     public void addUser(@RequestBody UserDto userDto) {
         userService.addUser(userDto);
-    }
+    }*/
 
     @PostMapping("/{id}")
     public void updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
@@ -40,5 +41,9 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("/email/{email}")
+    public UserDto getUserByEmail(@PathVariable String email) {
+        return userService.findByLogin(email);
+    }
 
 }

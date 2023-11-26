@@ -2,7 +2,6 @@ package com.example.quizepf_backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "quiz_users")
@@ -12,11 +11,11 @@ public class QuizUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "quiz_id")
     Quiz quiz;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     User user;
 
@@ -27,7 +26,7 @@ public class QuizUser {
     //@PrimaryKeyJoinColumn
     //private LeaderBoard leaderboard;
 
-    private QuizUser(QuizUser.Builder builder) {
+    private QuizUser(Builder builder) {
         this.id = builder.id;
         this.quiz = builder.quiz;
         this.user = builder.user;
@@ -44,18 +43,24 @@ public class QuizUser {
         private int score;
 
 
-        public QuizUser.Builder id (Long id) {
+        public Builder id (Long id) {
             this.id = id;
             return this;
         }
 
-        public QuizUser.Builder quiz(Quiz quiz) {
+        public Builder quiz(Quiz quiz) {
             this.quiz = quiz;
             return this;
         }
-        public QuizUser.Builder user(User user) {
+        public Builder user(User user) {
             this.user = user;
             return this;
+        }
+
+        public Builder score(int score )
+        {
+            this.score = score;
+            return  this;
         }
         public QuizUser build() {
             return new QuizUser(this);
