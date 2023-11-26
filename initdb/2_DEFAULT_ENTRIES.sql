@@ -17,14 +17,14 @@ INSERT INTO quiz_users(id, quiz_id, user_id, score) VALUES (3,1,2,300);
 INSERT INTO quiz_users(id, quiz_id, user_id, score) VALUES (4,2,2,10);
 
 --questions qcm 1 a 2
-INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (1,'quelle est la capital de la France?', 1,1,50);
-INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (2,'quelle est la capital de l Espagne?', 1,1,50);
+INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (1,'quelle est la capitale de la France?', 1,1,50);
+INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (2,'quelle est la capitale de l Espagne?', 1,1,50);
 
 --questions single 3
-INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (3,'quelle est la capital de l Allemagne?', 1,0,50);
+INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (3,'quelle est la capitale de l Allemagne?', 1,0,50);
 
 --questions writen 4 et 5
-INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (4,'quelle est la capital de la France?', 1,2,50);
+INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (4,'quelle est la capitale de la France?', 1,2,50);
 INSERT INTO quiz_questions(id, question, quiz_id, question_type, question_value) VALUES (5,'sport tres populaire dans le monde',1,2,50);
 
 --question1

@@ -16,8 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +36,7 @@ public class QuizAnswerServices {
         it.forEach((quizAnswer -> {
             //to hide the answer in the browser
             quizAnswer.setIsTrue(false);
-            if (quizAnswer.getQuizQuestion().getQuestionType() == QuestionType.WRITENANSWER){
+            if (quizAnswer.getQuizQuestion().getQuestionType() == QuestionType.WRITTENANSWER){
                 quizAnswer.setAnswer("");
             }
             // comment everything between the 2 comments to test if score is working properly
@@ -96,7 +94,7 @@ public class QuizAnswerServices {
             QuizAnswer currAnswer = (QuizAnswer) quizAnswers.stream().filter(qa -> qa.getId() == userQuizAnswer.getId());
 
             //compare result and add to score if correct
-            if (quizQuestion.getQuestionType() == QuestionType.WRITENANSWER){
+            if (quizQuestion.getQuestionType() == QuestionType.WRITTENANSWER){
                 // if user answer = answer -> add to score
                 if (userQuizAnswer.getAnswer().equals(currAnswer.getAnswer())){
                     score += quizQuestion.getQuestionValue();
