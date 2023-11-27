@@ -38,6 +38,12 @@ public class QuizUserServices {
         return quizUsers;
     }
 
+    /**
+     *
+     * @param userId
+     * @return List<Ranking>
+     */
+
     public List<Ranking> getRanking(Long userId){
         Iterable<QuizUser> it = quizUserDao.findByUserId(userId);
         List <Ranking> rankings = new ArrayList<>();

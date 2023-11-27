@@ -98,7 +98,7 @@ public class QuizAnswerServices {
             //compare result and add to score if correct
             if (quizQuestion.getQuestionType() == QuestionType.WRITTENANSWER){
                 // if user answer = answer -> add to score
-                if (userQuizAnswer.getAnswer().equals(currAnswer.getAnswer())){
+                if (userQuizAnswer.getAnswer().toLowerCase().equals(currAnswer.getAnswer().toLowerCase())){
                     score += quizQuestion.getQuestionValue();
                 }
             } else if (quizQuestion.getQuestionType() == QuestionType.SINGLECHOICE) {
