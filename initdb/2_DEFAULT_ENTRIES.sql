@@ -2,7 +2,7 @@
 -- TODO change user to accept hash for password instead of password in clear
 
 INSERT INTO users (id, first_name, last_name, password, email) VALUES (1, 'test', 'test', 'root', 'test.test@test.com');
-INSERT INTO users (id, first_name, last_name, password, email) VALUES (2, 'test2', 'test2', 'root', 'test2.test2@test.com');
+/*INSERT INTO users (id, first_name, last_name, password, email) VALUES (2, 'test2', 'test2', 'root', 'test2.test2@test.com');
 INSERT INTO users (id, first_name, last_name, password, email) VALUES (3, 'test3', 'test3', 'root', 'test3.test3@test.com');
 
 INSERT INTO quizzes(id, name, created_by) VALUES (1,'quiz1',1);
@@ -44,4 +44,4 @@ INSERT INTO quiz_answers(id, quiz_question_id, answer, is_true) VALUES (9,3,'MUN
 
 --question4
 INSERT INTO quiz_answers(id, quiz_question_id, answer, is_true) VALUES (10,4,'PARIS',true);
-INSERT INTO quiz_answers(id, quiz_question_id, answer, is_true) VALUES (11,5,'FOOTBALL',true);
+INSERT INTO quiz_answers(id, quiz_question_id, answer, is_true) VALUES (11,5,'FOOTBALL',true);*/
